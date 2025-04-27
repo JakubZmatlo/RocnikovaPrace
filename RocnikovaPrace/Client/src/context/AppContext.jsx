@@ -11,6 +11,7 @@ export const AppContextProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [showUserLogin, setShowUserLogin] = useState(false)
     const [cartItems, setCartItems] = useState({});
+    const [searchQuery, setSearchQuery] = useState({});
 
     const addToCart = (itemId) => {
         let cartData = structuredClone(cartItems);
@@ -43,8 +44,27 @@ export const AppContextProvider = ({ children }) => {
         setCartItems(cartData)
     }
 
+    const getCartCount = ()=>{
+        let totalCount = 0;
+        for(const item in cartItems){
+            totalCount += cartItems[item];
+        }
+        return totalCount;
+    }
+
+    const getCartAmount = ()=>{
+        let totalAmount = 0;
+        for(const items in cartItems){
+            let itemInfo = products.find((product) => product._id === items);
+            if(cartItems[items] > 0){
+                totalAmount += itemInfo.offerPrice * cartItems[items]
+            }
+        }
+        return Math.floor(totalAmount * 100) / 100;
+    }
+
     const value = { navigate, user, setUser, showUserLogin, setShowUserLogin, currency, cartItems, 
-        addToCart, updateCartItem, removeFromCart }
+        addToCart, updateCartItem, removeFromCart, searchQuery, setSearchQuery, getCartCount, getCartAmount}
 
     return <AppContext.Provider value={value}>
         {children}

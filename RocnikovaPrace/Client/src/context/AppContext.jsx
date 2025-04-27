@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { createContext, useContext } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { dummyProducts } from "../assets/assets";
 
 export const AppContext = createContext();
 
@@ -12,6 +14,15 @@ export const AppContextProvider = ({ children }) => {
     const [showUserLogin, setShowUserLogin] = useState(false)
     const [cartItems, setCartItems] = useState({});
     const [searchQuery, setSearchQuery] = useState({});
+    const [products, setProducts] = useState([]);
+
+    const fetchProducts = async ()=> {
+        setProducts(dummyProducts)
+    }
+
+    useEffect(()=> {
+        fetchProducts()
+    },[])
 
     const addToCart = (itemId) => {
         let cartData = structuredClone(cartItems);
@@ -64,7 +75,7 @@ export const AppContextProvider = ({ children }) => {
     }
 
     const value = { navigate, user, setUser, showUserLogin, setShowUserLogin, currency, cartItems, 
-        addToCart, updateCartItem, removeFromCart, searchQuery, setSearchQuery, getCartCount, getCartAmount}
+        addToCart, updateCartItem, removeFromCart, searchQuery, setSearchQuery, getCartCount, getCartAmount, products}
 
     return <AppContext.Provider value={value}>
         {children}

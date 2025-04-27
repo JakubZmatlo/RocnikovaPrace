@@ -11,9 +11,9 @@ const Categories = () => {
       <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 mt-6 gap-6'>
 
         <div className='group cursor-pointer py-5 px-3 gap-2 rounded-lg flex flex-col justify-center items-center' 
-        onClick={() => {navigate(`/products/ms`)}}>
+        onClick={() => {navigate(`/products/worldchampionship`)}}>
             <img src="ms.jpg" alt="" className='group-hover:scale-108 transition max-w-28'/>
-            <p className='text-sm font-medium'>MS</p>
+            <p className='text-sm font-medium'>World Championship</p>
         </div>
 
         <div className='group cursor-pointer py-5 px-3 gap-2 rounded-lg flex flex-col justify-center items-center' 

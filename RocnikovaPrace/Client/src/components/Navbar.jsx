@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { Navigate, NavLink } from 'react-router-dom'
+import { assets } from '../assets/assets'
 import { useAppContext } from '../context/AppContext'
 
 const Navbar = () => {
@@ -21,7 +22,7 @@ const Navbar = () => {
         <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all">
 
             <NavLink to='/' onClick={() => setOpen(false)}>
-                <img className="w-50 h-50" src="slapshot.png" alt="dummyLogoColored" />
+                <img className="w-50 h-50" src={assets.logo} alt="logo" />
             </NavLink>
 
             {/* Desktop Menu */}
@@ -33,11 +34,11 @@ const Navbar = () => {
 
                 <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
                     <input onChange={(e) => setSearchQuery(e.target.value)} className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500" type="text" placeholder="Search products" />
-                    <img src="search-icon.svg" alt="search" className='w-4 h-4' />
+                    <img src={assets.search_icon} alt="search" className='w-4 h-4' />
                 </div>
 
                 <div onClick={() => navigate("/cart")} className="relative cursor-pointer">
-                    <img src="shopping-cart.svg" alt="cart" className='w-8 opacity-80' />
+                    <img src={assets.cart_icon} alt="cart" className='w-8 opacity-80' />
                     <button className="absolute -top-2 -right-3 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full">{getCartCount()}</button>
                 </div>
 
@@ -46,7 +47,7 @@ const Navbar = () => {
                 </button>
                 ) : (
                     <div className='relative group'>
-                        <img src="profile-pic.svg" className='w-10' alt="profile" />
+                        <img src={assets.profile_icon} className='w-10' alt="profile" />
                         <ul className='hidden group-hover:block absolute top-10 right-0 bg-white shadow border 
                         border-gray-200 py-2.5 w-30 rounded-md text-sm z-40'>
                             <li onClick={() => navigate("my-orders")} className='p-1.5 pl-3 hover:bg-primary/10 cursor-pointer'>My Orders</li>
@@ -58,12 +59,12 @@ const Navbar = () => {
 
             <div className='flex items-center gap-6 sm:hidden'>
                 <div onClick={() => navigate("/cart")} className="relative cursor-pointer">
-                    <img src="shopping-cart.svg" alt="cart" className='w-8 opacity-80' />
+                    <img src={assets.cart_icon} alt="cart" className='w-8 opacity-80' />
                     <button className="absolute -top-2 -right-3 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full">{getCartCount()}</button>
                 </div>
                 <button onClick={() => open ? setOpen(false) : setOpen(true)} aria-label="Menu">
                     {/* Menu Icon SVG */}
-                    <img src="menu-icon.svg" alt="menu" className='w-7 h-7' />
+                    <img src={assets.menu_icon} alt="menu" className='w-7 h-7' />
                 </button>
             </div>
 
@@ -78,6 +79,7 @@ const Navbar = () => {
                     {user &&
                         <NavLink to="/products" onClick={() => setOpen(false)}>My Orders</NavLink>
                     }
+                    <NavLink to="/" onClick={() => setOpen(false)}>Contact</NavLink>
 
                     {!user ? (
                         <button onClick={() => { setOpen(false); setShowUserLogin(true); }} className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-primary-dull transition text-white rounded-full text-sm">

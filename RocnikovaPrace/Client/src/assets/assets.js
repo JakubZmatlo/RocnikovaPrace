@@ -94,7 +94,7 @@ export const dummyProducts = [
     {
         _id: "gd46g23h",
         name: "insert card DAVID ŠPAČEK 23-24 LC Golden Prague Belongs to Us World Champions Red /10",
-        category: "World Championship",
+        category: "worldchampionship",
         price: 12,
         image: [ms],
         description: [
@@ -110,7 +110,7 @@ export const dummyProducts = [
     {
         _id: "gd47g34h",
         name: "AUTO card ONDŘEJ KAŠE 23-24 LC Golden Prague Belongs to Us World Champions Signature /9",
-        category: "World Championship",
+        category: "worldchampionship",
         price: 45,
         image: [ms2],
         description: [
@@ -126,7 +126,7 @@ export const dummyProducts = [
     {
         _id: "gd48g45h",
         name: "insert card DANIEL VOŽENÍLEK 23-24 LC Golden Prague Belongs to Us IIHF World Championship Turquoise 1/1",
-        category: "World Championship",
+        category: "worldchampionship",
         price: 37,
         image: [ms3],
         description: [
@@ -142,7 +142,7 @@ export const dummyProducts = [
     {
         _id: "gd46g23h",
         name: "AUTO RC card MATYÁŠ ŠAPOVALIV 23-24 SZ Hokejové Česko Top Prospects Auto /15",
-        category: "World Championship",
+        category: "worldchampionship",
         price: 32,
         image: [ms4],
         description: [
@@ -158,7 +158,7 @@ export const dummyProducts = [
     {
         _id: "gd46g23h",
         name: "insert card MIKULÁŠ HOVORKA 23-24 LC Golden Prague Belongs to Us Beijer Hockey Games Turquoise 1/1",
-        category: "World Championship",
+        category: "worldchampionship",
         price: 22,
         image: [ms5],
         description: [
@@ -174,7 +174,7 @@ export const dummyProducts = [
     {
         _id: "gd46g23h",
         name: "insert card PASTRŇÁK/McBAIN 23-24 LC Golden Prague Belongs to Us Memorable Moments Red /10",
-        category: "World Championship",
+        category: "worldchampionship",
         price: 18,
         image: [ms6],
         description: [

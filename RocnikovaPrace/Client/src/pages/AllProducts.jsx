@@ -7,7 +7,7 @@ import { useAppContext } from '../context/AppContext'
 const AllProducts = () => {
 
     const {products, searchQuery} = useAppContext()
-    const {filteredProducts, setFilteredProducts} = useState()
+    const [filteredProducts, setFilteredProducts] = useState([])
 
     useEffect(()=> {
         if (searchQuery.length > 0) {

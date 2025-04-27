@@ -11,7 +11,16 @@ import ms4 from "./ms4.jpg";
 import ms5 from "./ms5.jpg";
 import ms6 from "./ms6.jpg";
 import nhl from "./nhl.jpg";
+import nhl2 from "./nhl2.jpg";
+import nhl3 from "./nhl3.jpg";
+import nhl4 from "./nhl4.jpg";
+import nhl5 from "./nhl5.jpg";
+import nhl6 from "./nhl6.jpg";
+import nhl7 from "./nhl7.jpg";
 import extraliga from "./extraliga.jpg";
+import extraliga2 from "./extraliga2.jpg";
+import extraliga3 from "./extraliga3.jpg";
+import extraliga4 from "./extraliga4.jpg";
 import binder from "./binder.jpg";
 import accesory from "./accesory.jpg";
 import accesory2 from "./accesory2.jpg";
@@ -32,7 +41,16 @@ export const assets = {
     ms5,
     ms6,
     nhl,
+    nhl2,
+    nhl3,
+    nhl4,
+    nhl5,
+    nhl6,
+    nhl7,
     extraliga,
+    extraliga2,
+    extraliga3,
+    extraliga4,
     binder,
     accesory,
     accesory2,
@@ -197,6 +215,176 @@ export const dummyProducts = [
 
 
 
+
+    {
+        _id: "gd56g04h",
+        name: "2024-25 Upper Deck Series 2 Hockey Hobby Balíček",
+        category: "nhl",
+        price: 14,
+        image: [nhl],
+        description: [
+            "12 cards in pack",
+        ], 
+        createdAt: "2025-03-25T07:17:46.018Z",
+        updatedAt: "2025-03-25T07:18:13.103Z",
+        inStock: true,
+    },
+    {
+        _id: "gd57g88h",
+        name: "2024-25 Upper Deck SPx Hockey Hobby Balíček",
+        category: "nhl",
+        price: 18,
+        image: [nhl2],
+        description: [
+            "3 cards in pack",
+        ], 
+        createdAt: "2025-03-25T07:17:46.018Z",
+        updatedAt: "2025-03-25T07:18:13.103Z",
+        inStock: true,
+    },
+    {
+        _id: "gd58g46h",
+        name: "2023-24 Upper Deck O-Pee-Chee Platinum Hockey Blaster Box",
+        category: "nhl",
+        price: 35,
+        image: [nhl3],
+        description: [
+            "6 packs in box/4 cards in pack",
+        ], 
+        createdAt: "2025-03-25T07:17:46.018Z",
+        updatedAt: "2025-03-25T07:18:13.103Z",
+        inStock: true,
+    },
+    {
+        _id: "gd59g61h",
+        name: "2024-25 Upper Deck SP Game Used Hockey Hobby Box",
+        category: "nhl",
+        price: 177,
+        image: [nhl4],
+        description: [
+            "1 packs in box/9 cards in pack",
+        ], 
+        createdAt: "2025-03-25T07:17:46.018Z",
+        updatedAt: "2025-03-25T07:18:13.103Z",
+        inStock: true,
+    },
+    {
+        _id: "gd60g11h",
+        name: "AUTO RC patch card CUTTER GAUTHIER 24-25 SPGU Draft Day Marks /35",
+        category: "nhl",
+        price: 182,
+        image: [nhl5],
+        description: [
+            "Player: Cutter Gauthier",
+            "Team: Philadelphia Flyers",
+            "Year: 24/25",
+            "Card Type: AUTO patch",
+        ], 
+        createdAt: "2025-03-25T07:17:46.018Z",
+        updatedAt: "2025-03-25T07:18:13.103Z",
+        inStock: true,
+    },
+    {
+        _id: "gd61g99h",
+        name: "AUTO card SETH JARVIS 24-25 SPGU Blue Auto number 99",
+        category: "nhl",
+        price: 28,
+        image: [nhl6],
+        description: [
+            "Player: Seth Jarvis",
+            "Team: Carolina Hurricanes",
+            "Year: 24/25",
+            "Card Type: AUTO",
+
+        ], 
+        createdAt: "2025-03-25T07:17:46.018Z",
+        updatedAt: "2025-03-25T07:18:13.103Z",
+        inStock: true,
+    },
+    {
+        _id: "gd62g13h",
+        name: "AUTO card JOE PAVELSKI 18-19 Trilogy Ice Scripts number IS-JP",
+        category: "nhl",
+        price: 28,
+        image: [nhl7],
+        description: [
+            "Player: Joe Pavelski",
+            "Team: San Jose Sharks",
+            "Year: 18/19",
+            "Card Type: AUTO",
+        ], 
+        createdAt: "2025-03-25T07:17:46.018Z",
+        updatedAt: "2025-03-25T07:18:13.103Z",
+        inStock: true,
+    },
+
+
+
+    {
+        _id: "gd63g35h",
+        name: "2024-25 SportZoo Tipsport ELH Series 2 Hockey Premium Balíček",
+        category: "extraliga",
+        price: 8,
+        image: [extraliga],
+        description: [
+            "8 cards in pack",
+        ], 
+        createdAt: "2025-03-25T07:17:46.018Z",
+        updatedAt: "2025-03-25T07:18:13.103Z",
+        inStock: true,
+    },
+    {
+        _id: "gd64g72h",
+        name: "AUTO card JAKUB FLEK 24-25 SZ ELH Ser. 2 The Chosen Ones Die-Cut Auto /89",
+        category: "extraliga",
+        price: 22,
+        image: [extraliga2],
+        description: [
+            "Player: Jakub Flek",
+            "Team: Kometa Brno",
+            "Year: 24/25",
+            "Card Type: AUTO",
+        ], 
+        createdAt: "2025-03-25T07:17:46.018Z",
+        updatedAt: "2025-03-25T07:18:13.103Z",
+        inStock: true,
+    },
+    {
+        _id: "gd65g28h",
+        name: "insert card DANIEL KUROVSKÝ 24-25 SZ ELH Ser. 2 Powerplay Squad Golden Fireworks /45",
+        category: "extraliga",
+        price: 6,
+        image: [extraliga3],
+        description: [
+            "Player: Daniel Kurovský",
+            "Team: Oceláři Třinec",
+            "Year: 24/25",
+            "Card Type: insert",
+        ], 
+        createdAt: "2025-03-25T07:17:46.018Z",
+        updatedAt: "2025-03-25T07:18:13.103Z",
+        inStock: true,
+    },
+    {
+        _id: "gd65g28h",
+        name: "paralel card ADAM MĚCHURA 24-25 SZ ELH Ser. 2 Green Glitter /30",
+        category: "extraliga",
+        price: 2,
+        image: [extraliga4],
+        description: [
+            "Player: Adam Měchura",
+            "Team: Škoda Plzeň",
+            "Year: 24/25",
+            "Card Type: paralel",
+        ], 
+        createdAt: "2025-03-25T07:17:46.018Z",
+        updatedAt: "2025-03-25T07:18:13.103Z",
+        inStock: true,
+    },
+
+
+
+
     {
         _id: "gd52g16h",
         name: "UP Album PRO Binder Zippered for 360 card, black with zipper",
@@ -249,52 +437,7 @@ export const dummyProducts = [
         updatedAt: "2025-03-25T07:18:13.103Z",
         inStock: true,
     },
-    /*{
-        _id: "gd56g04h",
-        name: "insert card PASTRŇÁK/McBAIN 23-24 LC Golden Prague Belongs to Us Memorable Moments Red /10",
-        category: "worldchampionship",
-        price: 18,
-        image: [ms6],
-        description: [
-            "Player: Pastrňák/McBain",
-            "Team: Representation",
-            "Year: 23/24",
-            "Card Type: insert",
-        ], 
-        createdAt: "2025-03-25T07:17:46.018Z",
-        updatedAt: "2025-03-25T07:18:13.103Z",
-        inStock: true,
-    },
-    {
-        _id: "gd57g88h",
-        name: "insert card PASTRŇÁK/McBAIN 23-24 LC Golden Prague Belongs to Us Memorable Moments Red /10",
-        category: "worldchampionship",
-        price: 18,
-        image: [ms6],
-        description: [
-            "Player: Pastrňák/McBain",
-            "Team: Representation",
-            "Year: 23/24",
-            "Card Type: insert",
-        ], 
-        createdAt: "2025-03-25T07:17:46.018Z",
-        updatedAt: "2025-03-25T07:18:13.103Z",
-        inStock: true,
-    },
-    {
-        _id: "gd58g46h",
-        name: "insert card PASTRŇÁK/McBAIN 23-24 LC Golden Prague Belongs to Us Memorable Moments Red /10",
-        category: "worldchampionship",
-        price: 18,
-        image: [ms6],
-        description: [
-            "Player: Pastrňák/McBain",
-            "Team: Representation",
-            "Year: 23/24",
-            "Card Type: insert",
-        ], 
-        createdAt: "2025-03-25T07:17:46.018Z",
-        updatedAt: "2025-03-25T07:18:13.103Z",
-        inStock: true,
-    },*/
+    
+
+    
 ]

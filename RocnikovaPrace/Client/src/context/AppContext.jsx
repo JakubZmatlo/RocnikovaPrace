@@ -8,7 +8,6 @@ import { dummyProducts } from "../assets/assets";
 export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
-    const currency = import.meta.VITE_CURRENCY;
     const navigate = useNavigate();
     const [user, setUser] = useState(null)
     const [showUserLogin, setShowUserLogin] = useState(false)
@@ -74,7 +73,7 @@ export const AppContextProvider = ({ children }) => {
         return Math.floor(totalAmount * 100) / 100;
     }
 
-    const value = { navigate, user, setUser, showUserLogin, setShowUserLogin, currency, cartItems, 
+    const value = { navigate, user, setUser, showUserLogin, setShowUserLogin, cartItems, 
         addToCart, updateCartItem, removeFromCart, searchQuery, setSearchQuery, getCartCount, getCartAmount, products}
 
     return <AppContext.Provider value={value}>

@@ -4,8 +4,6 @@ import arrow from "./right-arrow.svg";
 import search_icon from "./search-icon.svg";
 import cart_icon from "./shopping-cart.svg";
 import banner from "./banner.jpg";
-import binder from "./binder.jpg";
-import extraliga from "./extraliga.jpg";
 import ms from "./ms.jpg";
 import ms2 from "./ms2.jpg";
 import ms3 from "./ms3.jpg";
@@ -13,6 +11,11 @@ import ms4 from "./ms4.jpg";
 import ms5 from "./ms5.jpg";
 import ms6 from "./ms6.jpg";
 import nhl from "./nhl.jpg";
+import extraliga from "./extraliga.jpg";
+import binder from "./binder.jpg";
+import accesory from "./accesory.jpg";
+import accesory2 from "./accesory2.jpg";
+import accesory3 from "./accesory3.jpg";
 import logo from "./slapshot.png";
 
 export const assets = {
@@ -22,8 +25,6 @@ export const assets = {
     search_icon,
     cart_icon,
     banner,
-    binder,
-    extraliga,
     ms,
     ms2,
     ms3,
@@ -31,6 +32,11 @@ export const assets = {
     ms5,
     ms6,
     nhl,
+    extraliga,
+    binder,
+    accesory,
+    accesory2,
+    accesory3,
     logo,
 }
 
@@ -52,8 +58,8 @@ export const categories = [
         image: extraliga,
     },
     {
-        text: "Binders",
-        path: "binders",
+        text: "Accesories",
+        path: "accesories",
         image: binder,
     },
 ];
@@ -112,6 +118,7 @@ export const dummyProducts = [
         name: "AUTO card ONDŘEJ KAŠE 23-24 LC Golden Prague Belongs to Us World Champions Signature /9",
         category: "worldchampionship",
         price: 45,
+        offerPrice: 40,
         image: [ms2],
         description: [
             "Player: Ondřej Kaše",
@@ -140,7 +147,7 @@ export const dummyProducts = [
         inStock: true,
     },
     {
-        _id: "gd46g23h",
+        _id: "gd49g67h",
         name: "AUTO RC card MATYÁŠ ŠAPOVALIV 23-24 SZ Hokejové Česko Top Prospects Auto /15",
         category: "worldchampionship",
         price: 32,
@@ -156,7 +163,7 @@ export const dummyProducts = [
         inStock: true,
     },
     {
-        _id: "gd46g23h",
+        _id: "gd50g16h",
         name: "insert card MIKULÁŠ HOVORKA 23-24 LC Golden Prague Belongs to Us Beijer Hockey Games Turquoise 1/1",
         category: "worldchampionship",
         price: 22,
@@ -172,7 +179,7 @@ export const dummyProducts = [
         inStock: true,
     },
     {
-        _id: "gd46g23h",
+        _id: "gd51g74h",
         name: "insert card PASTRŇÁK/McBAIN 23-24 LC Golden Prague Belongs to Us Memorable Moments Red /10",
         category: "worldchampionship",
         price: 18,
@@ -187,4 +194,107 @@ export const dummyProducts = [
         updatedAt: "2025-03-25T07:18:13.103Z",
         inStock: true,
     },
+
+
+
+    {
+        _id: "gd52g16h",
+        name: "UP Album PRO Binder Zippered for 360 card, black with zipper",
+        category: "accesories",
+        price: 35,
+        image: [binder],
+        description: [
+            "Ultra Pro album icluding foils, for 360 pcs cards (twosided) ",
+        ], 
+        createdAt: "2025-03-25T07:17:46.018Z",
+        updatedAt: "2025-03-25T07:18:13.103Z",
+        inStock: true,
+    },
+    {
+        _id: "gd53g44h",
+        name: "UP Plastic box for 15 cards",
+        category: "accesories",
+        price: 2,
+        image: [accesory],
+        description: [
+            "ULTRA PRO closable box",
+        ], 
+        createdAt: "2025-03-25T07:17:46.018Z",
+        updatedAt: "2025-03-25T07:18:13.103Z",
+        inStock: true,
+    },
+    {
+        _id: "gd54g97h",
+        name: "UP Plastic toploader 100pt, package 50 pcs",
+        category: "accesories",
+        price: 16,
+        image: [accesory2],
+        description: [
+            "ULTRA PRO plastic solid packaging for cards 50 pcs", 
+        ], 
+        createdAt: "2025-03-25T07:17:46.018Z",
+        updatedAt: "2025-03-25T07:18:13.103Z",
+        inStock: true,
+    },
+    {
+        _id: "gd55g33h",
+        name: "UP Plastic box for 150 cards",
+        category: "accesories",
+        price: 4,
+        image: [accesory3],
+        description: [
+            "ULTRA PRO closable box",
+        ], 
+        createdAt: "2025-03-25T07:17:46.018Z",
+        updatedAt: "2025-03-25T07:18:13.103Z",
+        inStock: true,
+    },
+    /*{
+        _id: "gd56g04h",
+        name: "insert card PASTRŇÁK/McBAIN 23-24 LC Golden Prague Belongs to Us Memorable Moments Red /10",
+        category: "worldchampionship",
+        price: 18,
+        image: [ms6],
+        description: [
+            "Player: Pastrňák/McBain",
+            "Team: Representation",
+            "Year: 23/24",
+            "Card Type: insert",
+        ], 
+        createdAt: "2025-03-25T07:17:46.018Z",
+        updatedAt: "2025-03-25T07:18:13.103Z",
+        inStock: true,
+    },
+    {
+        _id: "gd57g88h",
+        name: "insert card PASTRŇÁK/McBAIN 23-24 LC Golden Prague Belongs to Us Memorable Moments Red /10",
+        category: "worldchampionship",
+        price: 18,
+        image: [ms6],
+        description: [
+            "Player: Pastrňák/McBain",
+            "Team: Representation",
+            "Year: 23/24",
+            "Card Type: insert",
+        ], 
+        createdAt: "2025-03-25T07:17:46.018Z",
+        updatedAt: "2025-03-25T07:18:13.103Z",
+        inStock: true,
+    },
+    {
+        _id: "gd58g46h",
+        name: "insert card PASTRŇÁK/McBAIN 23-24 LC Golden Prague Belongs to Us Memorable Moments Red /10",
+        category: "worldchampionship",
+        price: 18,
+        image: [ms6],
+        description: [
+            "Player: Pastrňák/McBain",
+            "Team: Representation",
+            "Year: 23/24",
+            "Card Type: insert",
+        ], 
+        createdAt: "2025-03-25T07:17:46.018Z",
+        updatedAt: "2025-03-25T07:18:13.103Z",
+        inStock: true,
+    },*/
 ]

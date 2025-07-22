@@ -1,10 +1,13 @@
 var createError = require('http-errors');
 var express = require('express');
+const port = 4000;
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
-const mongoose = require('mongoose')
+const jwt = require('jsonwebtoken');
+const multer = require("multer");
+const mongoose = require('mongoose');
 mongoose
 .connect(`mongodb+srv://admin:adminadmin@cluster0.kstps.mongodb.net/eshop?retryWrites=true&w=majority&appName=Cluster0`)
 .then(() => console.log("Database connected"))
@@ -44,5 +47,38 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.get("/", (req, res) =>{
+  res.send("App is running")
+})
+
+const storage = multer.diskStorage({
+  destination: './images',
+  filename:(req,file,cb) => {
+    return cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+  }
+})
+
+const upload = multer({storage:storage})
+
+app.use('/images', express.static('images'))
+
+app.post("/upload", upload.single('product'),(req,res)=>{
+  res.json({
+    success:1,
+    image_url:`http://localhost:${port}/images/${req.file.filename}`,
+  })
+})
+
+
+
+app.listen(port, (error)=>{
+  if (!error) {
+    console.log("Server is running on port " +port)
+  }
+  else{
+    console.log("Error: " +error)
+  }
+})
 
 module.exports = app;

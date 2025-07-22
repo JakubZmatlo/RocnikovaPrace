@@ -6,8 +6,8 @@ const schema = mongoose.Schema({
     category: { type: String, required: true },
     price: { type: Number, required: true },
     image: { type: String, required: true },
-    date: { type: Date, default: Date.now},
-    availability: {type: Boolean, default: true}
+    date: { type: Date, default: Date.now },
+    availability: { type: Boolean, default: true }
 
 });
 

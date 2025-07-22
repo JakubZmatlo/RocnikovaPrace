@@ -9,12 +9,13 @@ const jwt = require('jsonwebtoken');
 const multer = require("multer");
 const mongoose = require('mongoose');
 mongoose
-.connect(`mongodb+srv://admin:adminadmin@cluster0.kstps.mongodb.net/eshop?retryWrites=true&w=majority&appName=Cluster0`)
-.then(() => console.log("Database connected"))
-.catch((err) => console.log(err));
+  .connect(`mongodb+srv://admin:adminadmin@cluster0.kstps.mongodb.net/eshop?retryWrites=true&w=majority&appName=Cluster0`)
+  .then(() => console.log("Database connected"))
+  .catch((err) => console.log(err));
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const productsRouter = require('./routes/products');
 
 var app = express();
 
@@ -31,14 +32,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/products', productsRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -48,36 +50,34 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.get("/", (req, res) =>{
+app.get("/", (req, res) => {
   res.send("App is running")
 })
 
 const storage = multer.diskStorage({
   destination: './images',
-  filename:(req,file,cb) => {
-    return cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+  filename: (req, file, cb) => {
+    return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
   }
 })
 
-const upload = multer({storage:storage})
+const upload = multer({ storage: storage })
 
 app.use('/images', express.static('images'))
 
-app.post("/upload", upload.single('product'),(req,res)=>{
+app.post("/upload", upload.single('product'), (req, res) => {
   res.json({
-    success:1,
-    image_url:`http://localhost:${port}/images/${req.file.filename}`,
+    success: 1,
+    image_url: `http://localhost:${port}/images/${req.file.filename}`,
   })
 })
 
-
-
-app.listen(port, (error)=>{
+app.listen(port, (error) => {
   if (!error) {
-    console.log("Server is running on port " +port)
+    console.log("Server is running on port " + port)
   }
-  else{
-    console.log("Error: " +error)
+  else {
+    console.log("Error: " + error)
   }
 })
 

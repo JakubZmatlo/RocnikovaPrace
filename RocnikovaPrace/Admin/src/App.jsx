@@ -4,10 +4,12 @@ import Admin from './pages/admin/Admin'
 
 const App = () => {
   return (
-    <div>
-      <Navbar/>
-      <Admin/>
-    </div>
+    <>
+      <div>
+        <Navbar />
+        <Admin />
+      </div>
+    </>
   )
 }
 

@@ -30,16 +30,13 @@ const AddProduct = () => {
 
         await fetch('http://localhost:4000/upload', {
             method: 'POST',
-            headers: {
-                Accept: 'application/json'
-            },
             body:formData,
         }).then ((resp) => resp.json().then((data)=>{responseData=data}));
 
         if (responseData.success) {
             product.image = responseData.image_url;
             console.log(product);
-            await fetch('http://localhost:4000/addproduct',{
+            await fetch('http://localhost:4000/products/addproduct',{
                 method:'POST',
                 headers:{
                     Accept: 'application/json',

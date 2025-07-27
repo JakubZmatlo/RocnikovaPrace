@@ -32,30 +32,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/products', (req, res, next) => {
+  console.log(`[DEBUG] Přijat požadavek: ${req.method} ${req.originalUrl}`);
+  next();
+});
 app.use('/products', productsRouter);
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
-
-// error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
 
 app.get("/", (req, res) => {
   res.send("App is running")
 })
 
 const storage = multer.diskStorage({
-  destination: './images',
+  destination: './upload/images',
   filename: (req, file, cb) => {
     return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
   }
@@ -63,7 +51,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
-app.use('/images', express.static('images'))
+app.use('/images', express.static('upload/images'))
 
 app.post("/upload", upload.single('product'), (req, res) => {
   res.json({
@@ -80,5 +68,21 @@ app.listen(port, (error) => {
     console.log("Error: " + error)
   }
 })
+
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  next(createError(404));
+});
+
+// error handler
+app.use(function (err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
 
 module.exports = app;

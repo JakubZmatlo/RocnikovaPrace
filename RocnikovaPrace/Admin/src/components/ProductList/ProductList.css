@@ -37,6 +37,7 @@
 .remove-icon{
     cursor: pointer;
     margin: auto;
+    width: 50px;
 }
 @media(max-width:800px){
     .product-list{

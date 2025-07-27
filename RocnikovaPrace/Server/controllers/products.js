@@ -47,7 +47,7 @@ exports.createProduct = async (req, res, next) => {
         id: id,
         name: req.body.name,
         category: req.body.category,
-        price: req.body.price,
+        price: Number(req.body.price),
         image: req.body.image
       });
       const result = await data.save();
@@ -90,18 +90,22 @@ exports.updateProduct = async (req, res, next) => {
       }
 };
 exports.deleteProduct = async (req, res, next) => {
-    try{
-        const result = await  Product.findByIdAndDelete({ id: Number(req.params.id) });
-        if(result){
-          return res.status(200).send({
-              message: "Product deleted",
-              payload: result
-          });
-        }
-        res.status(500).send({
-            message: "Product was not deleted"
-        })
-      } catch (err){
-          res.status(500).send(err);
+    try {
+      const idToDelete = Number(req.params.id);
+      const result = await Product.findOneAndDelete({ id: idToDelete });
+  
+      if (result) {
+        return res.status(200).send({
+          message: "Product deleted",
+          payload: result
+        });
+      } else {
+        return res.status(404).send({
+          message: "Product not found"
+        });
       }
-};
+    } catch (err) {
+      console.error(err);
+      res.status(500).send(err);
+    }
+  };

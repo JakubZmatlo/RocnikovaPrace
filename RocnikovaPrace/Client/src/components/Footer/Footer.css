@@ -1,5 +1,5 @@
 .footer {
-    background-color: #e0f7fa;
+    background-color: #3492f1;
     padding: 40px 20px;
     margin-top: 50px;
     display: flex;
@@ -32,7 +32,7 @@
   
   .slogan {
     font-size: 14px;
-    color: #333;
+    color: #0b0b0b;
     max-width: 300px;
   }
   
@@ -71,7 +71,7 @@
   .copyright {
     font-size: 12px;
     text-align: center;
-    color: #666;
+    color: #0b0b0b;
   }
   
   @media (max-width: 768px) {

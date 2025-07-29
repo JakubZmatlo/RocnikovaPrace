@@ -1,0 +1,73 @@
+.newsletter {
+    background-color: #f1f8ff;
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .newsletter-h {
+    font-size: 2rem;
+    color: #004080;
+    margin-bottom: 10px;
+  }
+  
+  .newsletter-p {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 30px;
+    max-width: 500px;
+    margin-inline: auto;
+  }
+  
+  .newsletter-form {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .newsletter-input {
+    padding: 12px 16px;
+    font-size: 1rem;
+    border: 2px solid #004080;
+    border-radius: 8px;
+    min-width: 250px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .newsletter-input:focus {
+    border-color: #0073e6;
+  }
+  
+  .newsletter-button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    background-color: #004080;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .newsletter-button:hover {
+    background-color: #3492f1;
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 600px) {
+    .newsletter-form {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .newsletter-input,
+    .newsletter-button {
+      width: 100%;
+      max-width: 300px;
+    }
+  }

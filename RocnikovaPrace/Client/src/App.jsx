@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import {Toaster} from "react-hot-toast";
-import Footer from './components/Footer';
+import Footer from './components/Footer/Footer';
 import { useAppContext } from './context/AppContext';
 import Login from './components/Login';
 import AllProducts from './pages/AllProducts';

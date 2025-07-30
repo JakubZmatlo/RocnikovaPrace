@@ -10,6 +10,7 @@ import AllProducts from './pages/AllProducts';
 import ProductCategory from './pages/ProductCategory';
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
+import SearchPage from './pages/SearchPage';
 
 const App = () => {
   const {showUserLogin} = useAppContext()
@@ -26,6 +27,7 @@ const App = () => {
           <Route path='/products/:category' element={<ProductCategory/>}/>
           <Route path='/products/:category/:id' element={<ProductDetails/>}/>
           <Route path='/cart' element={<Cart/>}/>
+          <Route path='/search' element={<SearchPage/>}/>
           
         </Routes>
       </div>

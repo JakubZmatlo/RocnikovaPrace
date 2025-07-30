@@ -1,20 +1,39 @@
 const Product = require("../models/products");
 
 exports.getAllProducts = async (req, res, next) => {
-    try{
-        const data = await Product.find();
-        if (data && data.length != 0){
-            return res.status(200).send({
-                message: "Products found",
-                payload: data
-            });
-        }
-        res.status(404).send({
-            message: "Products were not found"
-        })
-    } catch (err){
-        res.status(500).send(err);
+  try {
+    const { category, search } = req.query;
+
+    let filter = {};
+
+    if (category) {
+      filter.category = category;
     }
+
+    if (search && search.trim().length > 0) {
+      filter.$or = [
+        { name: { $regex: search, $options: "i" } },
+        { category: { $regex: search, $options: "i" } }
+      ];
+    }
+
+    
+
+    const data = await Product.find(filter);
+
+    if (data.length > 0) {
+      return res.status(200).send({
+        message: "Products found",
+        payload: data,
+      });
+    }
+
+    res.status(404).send({
+      message: "No products found",
+    });
+  } catch (err) {
+    res.status(500).send(err);
+  }
 };
 exports.getProductById = async (req, res, next) => {
     try{
@@ -89,23 +108,21 @@ exports.updateProduct = async (req, res, next) => {
           res.status(500).send(err);
       }
 };
-exports.deleteProduct = async (req, res, next) => {
-    try {
-      const idToDelete = Number(req.params.id);
-      const result = await Product.findOneAndDelete({ id: idToDelete });
-  
-      if (result) {
-        return res.status(200).send({
-          message: "Product deleted",
-          payload: result
-        });
-      } else {
-        return res.status(404).send({
-          message: "Product not found"
-        });
-      }
-    } catch (err) {
-      console.error(err);
-      res.status(500).send(err);
+exports.deleteProduct = async (req, res) => {
+  try {
+    const idToDelete = Number(req.params.id);
+    const result = await Product.findOneAndDelete({ id: idToDelete });
+
+    if (!result) {
+      return res.status(404).json({ message: "Product not found" });
     }
-  };
+
+    return res.status(200).json({
+      message: "Product deleted",
+      payload: result
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Server error", error: err.message });
+  }
+};

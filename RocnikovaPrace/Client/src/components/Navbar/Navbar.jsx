@@ -12,36 +12,32 @@ import menu_icon from '../../assets/menu-icon.svg';
 
 const Navbar = () => {
     const [open, setOpen] = useState(false)
-    const {user, setUser, setShowUserLogin, setSearchQuery, searchQuery, getCartCount } = useAppContext();
+    const { user, setUser, setShowUserLogin, setSearchQuery, searchQuery, getCartCount } = useAppContext();
     const navigate = useNavigate();
     const menuRef = useRef(null);
 
     useEffect(() => {
         const handleClickOutside = (e) => {
-          if (menuRef.current && !menuRef.current.contains(e.target)) {
-            setOpen(false);
-          }
+            if (menuRef.current && !menuRef.current.contains(e.target)) {
+                setOpen(false);
+            }
         };
-    
+
         if (open) {
-          document.addEventListener('mousedown', handleClickOutside);
+            document.addEventListener('mousedown', handleClickOutside);
         }
-    
+
         return () => {
-          document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('mousedown', handleClickOutside);
         };
-      }, [open]);
+    }, [open]);
 
     const logout = async () => {
         setUser(null);
         navigate('/')
     }
 
-    useEffect(() => {
-        if (searchQuery.length > 0) {
-            navigate("/products")
-        }
-    }, [searchQuery])
+
     return (
         <nav className="navbar">
 
@@ -59,7 +55,15 @@ const Navbar = () => {
                 <NavLink to='/products/accesories'>Accesories</NavLink>
 
                 <div className="navbar_desktop_searchbar">
-                    <input onChange={(e) => setSearchQuery(e.target.value)} className="navbar_desktop_searchbar_input" type="text" placeholder="Search products" />
+                    <input value={searchQuery} onChange={(e) => {
+                            const value = e.target.value;
+                            setSearchQuery(value);
+
+                            if (value.trim().length > 0) {
+                                navigate('/search'); 
+                            }
+                        }}
+                        className="navbar_desktop_searchbar_input" type="text" placeholder="Search products"/>
                     <img src={search_icon} alt="search" className='navbar_desktop_searchbar_icon' />
                 </div>
 

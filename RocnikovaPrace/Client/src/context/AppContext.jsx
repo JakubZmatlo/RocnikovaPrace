@@ -3,7 +3,7 @@ import { useState } from "react";
 import { createContext, useContext } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { dummyProducts } from "../assets/assets";
+import {categories} from "../assets/assets";
 
 export const AppContext = createContext();
 
@@ -12,16 +12,41 @@ export const AppContextProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [showUserLogin, setShowUserLogin] = useState(false)
     const [cartItems, setCartItems] = useState({});
-    const [searchQuery, setSearchQuery] = useState({});
+    const [searchQuery, setSearchQuery] = useState("");
     const [products, setProducts] = useState([]);
 
-    const fetchProducts = async ()=> {
-        setProducts(dummyProducts)
-    }
+    const fetchProducts = async () => {
+        try {
+          const res = await fetch("http://localhost:4000/products");
+          const data = await res.json();
+          setProducts(data.payload || []); // důležité
+        } catch (err) {
+          console.error("Chyba při načítání produktů:", err);
+          setProducts([]); // fallback
+        }
+      };
 
-    useEffect(()=> {
-        fetchProducts()
-    },[])
+      useEffect(() => {
+        const fetchProducts = async () => {
+          try {
+            const queryParam = searchQuery?.length > 0 ? `?search=${searchQuery}` : "";
+            const finalUrl = `http://localhost:4000/products${queryParam}`;
+            console.log("FETCHING:", finalUrl); // 👈 debug
+      
+            const res = await fetch(finalUrl);
+            const data = await res.json();
+            if (data.payload) {
+              setProducts(data.payload);
+            } else {
+              setProducts([]);
+            }
+          } catch (err) {
+            console.error("Chyba při načítání produktů:", err);
+          }
+        };
+      
+        fetchProducts();
+      }, [searchQuery]);
 
     const addToCart = (itemId) => {
         let cartData = structuredClone(cartItems);
@@ -74,7 +99,7 @@ export const AppContextProvider = ({ children }) => {
     }
 
     const value = { navigate, user, setUser, showUserLogin, setShowUserLogin, cartItems, 
-        addToCart, updateCartItem, removeFromCart, searchQuery, setSearchQuery, getCartCount, getCartAmount, products}
+        addToCart, updateCartItem, removeFromCart, searchQuery, setSearchQuery, getCartCount, getCartAmount, products, categories}
 
     return <AppContext.Provider value={value}>
         {children}

@@ -7,7 +7,7 @@ const ProductList = () => {
     const [allProducts, setAllProducts] = useState([]);
 
     const fetchInfo = async () => {
-        const res = await fetch('http://localhost:4000/products');
+        const res = await fetch('http://localhost:4000/products/');
         const data = await res.json();
         setAllProducts(data.payload);
     }
@@ -17,11 +17,11 @@ const ProductList = () => {
     }, [])
 
     const remove_product = async (id) => {
-        await fetch(`http://localhost:4000/products/${id}`, {
-          method: 'DELETE',
+        await fetch(`http://localhost:4000/products/delete/${id}`, {
+            method: 'DELETE',
         });
         await fetchInfo();
-      }
+    }
 
     return (
         <>
@@ -45,7 +45,7 @@ const ProductList = () => {
                                 <p>{product.name}</p>
                                 <p>${product.price}</p>
                                 <p>{product.category}</p>
-                                <img onClick={()=>{remove_product(product._id)}} className='remove-icon' src={delete_icon} alt="" />
+                                <img onClick={() => { remove_product(product.id) }} className='remove-icon' src={delete_icon} alt="" />
                             </div>
                             <hr />
                         </React.Fragment>

@@ -69,7 +69,7 @@ const AddProduct = () => {
                         Product category
                     </p>
                     <select value={productDetails.category} onChange={changeHandler} name="category" className='add-product-selector'>
-                        <option value="world-championship">World Championship</option>
+                        <option value="worldchampionship">World Championship</option>
                         <option value="nhl">NHL</option>
                         <option value="extraliga">Extraliga</option>
                         <option value="accesories">Accesories</option>

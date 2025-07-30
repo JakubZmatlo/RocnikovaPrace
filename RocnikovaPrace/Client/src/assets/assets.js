@@ -49,22 +49,18 @@ export const categories = [
     {
         text: "World Championship",
         path: "worldchampionship",
-        image: ms,
     },
     {
         text: "NHL",
         path: "nhl",
-        image: nhl,
     },
     {
         text: "Extraliga",
         path: "extraliga",
-        image: extraliga,
     },
     {
         text: "Accesories",
         path: "accesories",
-        image: binder,
     },
 ];
 

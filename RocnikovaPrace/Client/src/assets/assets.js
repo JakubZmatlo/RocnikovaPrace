@@ -1,8 +1,3 @@
-import menu_icon from "./menu-icon.svg";
-import profile_icon from "./profile-pic.svg";
-import arrow from "./right-arrow.svg";
-import search_icon from "./search-icon.svg";
-import cart_icon from "./shopping-cart.svg";
 import ms from "./ms.jpg";
 import ms2 from "./ms2.jpg";
 import ms3 from "./ms3.jpg";
@@ -24,14 +19,8 @@ import binder from "./accesories_logo.jpg";
 import accesory from "./accesory.jpg";
 import accesory2 from "./accesory2.jpg";
 import accesory3 from "./accesory3.jpg";
-import logo from "./slapshot.png";
 
 export const assets = {
-    menu_icon,
-    profile_icon,
-    arrow,
-    search_icon,
-    cart_icon,
     ms,
     ms2,
     ms3,
@@ -53,7 +42,6 @@ export const assets = {
     accesory,
     accesory2,
     accesory3,
-    logo,
 }
 
 

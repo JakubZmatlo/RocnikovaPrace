@@ -1,0 +1,220 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 30px;
+  background-color: white;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.navbar_logo {
+  width: 130px;
+  cursor: pointer;
+}
+
+.navbar_desktop {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.navbar_desktop a {
+  text-decoration: none;
+  color: #333;
+  font-size: 0.95rem;
+  position: relative;
+}
+
+.navbar_desktop a:hover {
+  color: #004080;
+}
+
+.navbar_desktop_searchbar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  padding: 6px 12px;
+  background-color: #f1f1f1;
+}
+
+.navbar_desktop_searchbar_input {
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 5px;
+  font-size: 0.9rem;
+  width: 150px;
+}
+
+.navbar_desktop_searchbar_icon {
+  width: 16px;
+  margin-left: 5px;
+}
+
+.navbar_desktop_cart {
+  position: relative;
+  cursor: pointer;
+}
+
+.navbar_desktop_cart_icon {
+  width: 28px;
+  opacity: 0.85;
+}
+
+.navbar_desktop_cart_button {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background-color: #004080;
+  color: white;
+  font-size: 0.7rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: none;
+}
+
+.user_button {
+  background-color: #004080;
+  color: white;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.user_button:hover {
+  background-color: #0066cc;
+}
+
+.user_button_logged {
+  position: relative;
+  cursor: pointer;
+}
+
+.user_icon {
+  width: 28px;
+  border-radius: 50%;
+}
+
+.user_logged_list {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  list-style: none;
+  padding: 10px;
+  z-index: 10;
+  display: none;
+}
+
+.user_button_logged:hover .user_logged_list {
+  display: block;
+}
+
+.user_logged_list_choices {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.user_logged_list_choices:hover {
+  background-color: #f3f3f3;
+}
+
+@media (max-width: 640px) {
+  .navbar_desktop {
+    display: none;
+  }
+
+  .navbar_mobile_menu {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 20px;
+    gap: 10px;
+  }
+
+  .navbar_mobile_menu a,
+  .navbar_mobile_menu button {
+    font-size: 0.9rem;
+    text-align: left;
+  }
+
+  .navbar_mobile_menu button {
+    padding: 8px 12px;
+    border-radius: 20px;
+  }
+}
+
+
+.navbar_mobile {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.navbar_mobile a {
+  color: #222;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  transition: color 0.2s ease;
+}
+
+.navbar_mobile a:hover {
+  color: #004080;
+}
+
+.navbar_mobile_login,
+.navbar_mobile_logout {
+  background-color: #004080;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navbar_mobile_login:hover,
+.navbar_mobile_logout:hover {
+  background-color: #0066cc;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 640px) {
+  .navbar_mobile {
+    display: none !important;
+  }
+}

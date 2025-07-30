@@ -3,7 +3,6 @@ import profile_icon from "./profile-pic.svg";
 import arrow from "./right-arrow.svg";
 import search_icon from "./search-icon.svg";
 import cart_icon from "./shopping-cart.svg";
-import banner from "./banner.jpg";
 import ms from "./ms.jpg";
 import ms2 from "./ms2.jpg";
 import ms3 from "./ms3.jpg";
@@ -33,7 +32,6 @@ export const assets = {
     arrow,
     search_icon,
     cart_icon,
-    banner,
     ms,
     ms2,
     ms3,

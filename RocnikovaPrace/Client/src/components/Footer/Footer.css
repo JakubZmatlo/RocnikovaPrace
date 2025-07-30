@@ -90,6 +90,10 @@
     .main_logo {
       margin-left: 0;
     }
+
+    .icon{
+      margin-left: 75px;
+    }
   
     .slogan {
       max-width: 100%;

@@ -58,7 +58,6 @@
     background-color: #3492f1;
   }
   
-  /* Mobile responsiveness */
   @media (max-width: 600px) {
     .newsletter-form {
       flex-direction: column;

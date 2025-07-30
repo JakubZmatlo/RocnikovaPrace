@@ -1,6 +1,6 @@
 import React from 'react'
 import MainBanner from '../components/MainBanner/MainBanner'
-import Categories from '../components/Categories'
+import Categories from '../components/Categories/Categories'
 import BestSeller from '../components/BestSeller'
 import NewsLetter from '../components/NewsLetter/NewsLetter'
 

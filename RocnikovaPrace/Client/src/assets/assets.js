@@ -20,7 +20,7 @@ import extraliga from "./extraliga.jpg";
 import extraliga2 from "./extraliga2.jpg";
 import extraliga3 from "./extraliga3.jpg";
 import extraliga4 from "./extraliga4.jpg";
-import binder from "./binder.jpg";
+import binder from "./accesories_logo.jpg";
 import accesory from "./accesory.jpg";
 import accesory2 from "./accesory2.jpg";
 import accesory3 from "./accesory3.jpg";

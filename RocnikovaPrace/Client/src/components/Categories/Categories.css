@@ -1,0 +1,80 @@
+.categories {
+    padding: 60px 20px;
+    background-color: #f8f9fa;
+    text-align: center;
+  }
+  
+  .categories_p {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #002b5c;
+  }
+  
+  .categories_logos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+  .categories_logo {
+    width: 180px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+  }
+  
+  .categories_logo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .categories_logo_image {
+    max-height: 140px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+
+  .categories_logo_image_nhl {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 15px;
+  }
+  
+  .categories_logo_p {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 500;
+    margin-top: auto;
+  }
+  
+  @media (max-width: 768px) {
+    .categories_logos {
+      gap: 20px;
+    }
+  
+    .categories_logo {
+      width: 140px;
+      padding: 15px;
+    }
+    
+  
+    .categories_p {
+      font-size: 1.5rem;
+    }
+  
+    .categories_logo_p {
+      font-size: 0.95rem;
+    }
+  }

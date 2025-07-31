@@ -21,6 +21,7 @@ const ordersRouter = require('./routes/orders');
 var app = express();
 const Product = require('./models/products');
 const Users = require('./models/users');
+const fetchUser = require('./middlewares/fetchUser');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -171,17 +172,14 @@ app.post('/create-checkout-session', async (req, res) => {
 app.get('/myorders', async (req, res) => {
   try {
     const token = req.headers['auth-token'];
-    if (!token) return res.status(401).json({ error: "No token provided" });
-
     const data = jwt.verify(token, 'secret_ecom');
-    const user = await Users.findById(data.user.id);
 
-    if (!user) return res.status(404).json({ error: "User not found" });
+    const orders = await Orders.find({ userId: data.user.id }).sort({ createdAt: -1 });
 
-    res.json({ success: true, orders: user.cartData });
+    res.json({ success: true, orders });
   } catch (err) {
     console.error('Chyba při načítání objednávek:', err);
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 

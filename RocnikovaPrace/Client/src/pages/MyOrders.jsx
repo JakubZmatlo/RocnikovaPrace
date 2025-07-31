@@ -6,7 +6,7 @@ function MyOrders() {
     useEffect(() => {
         const fetchOrders = async () => {
             const token = localStorage.getItem('token');
-            const res = await fetch('http://localhost:4000/myorders', {
+            const res = await fetch('http://localhost:4000/order/my-orders', {
                 headers: { 'auth-token': token }
             });
             const data = await res.json();
@@ -27,18 +27,16 @@ function MyOrders() {
             ) : (
                 orders.map((order, index) => (
                     <div key={index} style={{ border: '1px solid #ccc', marginBottom: '1rem', padding: '1rem' }}>
-                        <p><strong>Date:</strong> {order.createdAt ? new Date(order.createdAt).toLocaleString() : "Unknown"}</p>
-                        <p><strong>Payment:</strong> {order.paymentMethod || "Unknown"}</p>
-                        <p><strong>Items:</strong></p>
-                        <ul>
-                            {order.items && order.items.map((item, i) => (
-                                <li key={i}>
-                                    {item.name} — ${item.price} × {item.quantity}
-                                </li>
-                            ))}
-                        </ul>
+                      <p><strong>Date:</strong> {new Date(order.createdAt).toLocaleString()}</p>
+                      <p><strong>Payment:</strong> {order.paymentMethod}</p>
+                      <p><strong>Items:</strong></p>
+                      <ul>
+                        {order.items.map((item, i) => (
+                          <li key={i}>{item.name} - {item.quantity} × ${item.price}</li>
+                        ))}
+                      </ul>
                     </div>
-                ))
+                  ))
             )}
         </div>
     );

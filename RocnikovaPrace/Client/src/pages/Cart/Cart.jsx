@@ -35,9 +35,36 @@ const Cart = () => {
         }
     }, [products, cartItems]);
 
+    const placeCODOrder = async () => {
+        const token = localStorage.getItem('token');
+        const response = await fetch('http://localhost:4000/order/createorder', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': token,
+            },
+            body: JSON.stringify({
+                items: cartArray.map(item => ({
+                    productId: item._id,
+                    name: item.name,
+                    price: item.price,
+                    quantity: item.quantity,
+                })),
+                paymentMethod: 'COD',
+            }),
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            navigate('/my-orders');
+        } else {
+            alert('Chyba při objednávce');
+        }
+    };
+
     const handleCheckout = async () => {
         if (paymentOption === "COD") {
-            alert("Order created!");
+            await placeCODOrder();
             return;
         }
 
@@ -67,28 +94,6 @@ const Cart = () => {
             alert("Try again later");
         }
     };
-
-    const placeCODOrder = async () => {
-        const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:4000/createorder', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'auth-token': token,
-          },
-          body: JSON.stringify({
-            items: cartItems,
-            paymentMethod: 'COD',
-          }),
-        });
-      
-        const data = await response.json();
-        if (data.success) {
-          navigate('/myorders');
-        } else {
-          alert('Chyba při objednávce');
-        }
-      };
 
     return products.length > 0 && cartItems ? (
         <div className="cart-container">
@@ -166,6 +171,7 @@ const Cart = () => {
                     <select
                         onChange={(e) => setPaymentOption(e.target.value)}
                         className="cart-payment-select"
+                        value={paymentOption}
                     >
                         <option value="COD">Cash On Delivery</option>
                         <option value="Online">Online Payment</option>

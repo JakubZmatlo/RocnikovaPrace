@@ -20,7 +20,7 @@ const ordersRouter = require('./routes/orders');
 
 var app = express();
 const Product = require('./models/products');
-const Users = require('./models/users');
+const User = require('./models/users');
 const fetchUser = require('./middlewares/fetchUser');
 
 // view engine setup
@@ -73,7 +73,7 @@ app.post('/signup', async (req, res) => {
     return res.status(400).json({ success: false, errors: "User with this email address already exists" });
   }
 
-  const hashedPassword = await bcrypt.hash(req.body.password, 10); // 10 je počet salt rounds
+  const hashedPassword = await bcrypt.hash(req.body.password, 10); 
 
   let cart = {};
   for (let i = 0; i < 300; i++) {
@@ -110,7 +110,15 @@ app.post('/login', async (req, res) => {
   res.json({ success: true, token });
 });
 
-
+app.get('/userinfo', fetchUser, async (req, res) => {
+  try {
+      const user = await User.findById(req.user.id).select("-password");
+      if (!user) return res.status(404).json({ error: "User not found" });
+      res.json({ user });
+  } catch (err) {
+      res.status(500).json({ error: "Server error" });
+  }
+});
 
 app.get('/getcart', async (req, res) => {
   try {
@@ -137,7 +145,7 @@ app.post('/updatecart', async (req, res) => {
 });
 
 const Stripe = require('stripe');
-const stripe = Stripe('tvůj_sk_test_klíč'); 
+const stripe = Stripe('sk_test_51Rr389COvuIAM67in3ecq0eiN29ckHJenKsc6XTdwoJ7WimiOuxliP8KQQrCM1rUifgJ8LF87hnQia4g3h36Upds004Dilt4xF'); 
 
 app.post('/create-checkout-session', async (req, res) => {
   try {
@@ -149,7 +157,7 @@ app.post('/create-checkout-session', async (req, res) => {
         product_data: {
           name: item.name,
         },
-        unit_amount: item.price * 100, 
+        unit_amount: Math.round(parseFloat(item.price) * 100),
       },
       quantity: item.quantity,
     }));

@@ -48,6 +48,33 @@ export const AppContextProvider = ({ children }) => {
         fetchProducts();
       }, [searchQuery]);
 
+      useEffect(() => {
+        const fetchUser = async () => {
+          const token = localStorage.getItem("token");
+          if (token) {
+            try {
+              const res = await fetch("http://localhost:4000/userinfo", {
+                headers: {
+                  "auth-token": token
+                }
+              });
+              const data = await res.json();
+              if (data.user) {
+                setUser(data.user);
+              } else {
+                setUser(null);
+                localStorage.removeItem("token");
+              }
+            } catch (err) {
+              console.error("Chyba při načítání uživatele:", err);
+              setUser(null);
+            }
+          }
+        };
+      
+        fetchUser();
+      }, []);
+
     const addToCart = (itemId) => {
         let cartData = structuredClone(cartItems);
 

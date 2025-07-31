@@ -7,8 +7,8 @@ import Footer from './components/Footer/Footer';
 import { useAppContext } from './context/AppContext';
 import Login from './components/Login';
 import AllProducts from './pages/AllProducts';
-import ProductCategory from './pages/ProductCategory';
-import ProductDetails from './pages/ProductDetails';
+import ProductCategory from './pages/ProductCategory/ProductCategory';
+import ProductDetails from './pages/ProductDetails/ProductDetails';
 import Cart from './pages/Cart';
 import SearchPage from './pages/SearchPage';
 

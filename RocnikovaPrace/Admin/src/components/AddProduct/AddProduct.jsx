@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './AddProduct.css'
 import upload_icon from '../../assets/upload-icon.svg'
 
@@ -6,46 +6,66 @@ const AddProduct = () => {
 
     const [image, setImage] = useState(false);
     const [productDetails, setProductDetails] = useState({
-        name:"",
-        price:"",
-        category:"nhl",
-        image:""
+        name: "",
+        price: "",
+        category: "nhl",
+        image: "",
+        description: ""
     });
 
     const imageHandler = (e) => {
         setImage(e.target.files[0]);
     }
 
-    const changeHandler = (e) =>{
-        setProductDetails({...productDetails,[e.target.name]:e.target.value})
-    }
+    const changeHandler = (e) => {
+        const { name, value } = e.target;
+        setProductDetails({ ...productDetails, [name]: value });
+    };
 
     const addButton = async () => {
         console.log(productDetails);
         let responseData;
-        let product = productDetails;
+        let product = {
+            ...productDetails,
+            description: typeof productDetails.description === 'string'
+                ? productDetails.description
+                    .split('\n')
+                    .map(line => line.trim())
+                    .filter(line => line.length > 0)
+                : productDetails.description
+        };
+
+        if (typeof product.description === 'string') {
+            product.description = product.description
+                .split('\n')
+                .map((line) => line.trim())
+                .filter((line) => line.length > 0);
+        } else if (!Array.isArray(product.description)) {
+            product.description = [];
+        }
 
         let formData = new FormData();
         formData.append('product', image);
 
         await fetch('http://localhost:4000/upload', {
             method: 'POST',
-            body:formData,
-        }).then ((resp) => resp.json().then((data)=>{responseData=data}));
+            body: formData,
+        }).then((resp) => resp.json().then((data) => { responseData = data }));
 
         if (responseData.success) {
             product.image = responseData.image_url;
-            console.log(product);
-            await fetch('http://localhost:4000/products/addproduct',{
-                method:'POST',
-                headers:{
+            console.log("Final product:", product);
+
+            await fetch('http://localhost:4000/products/addproduct', {
+                method: 'POST',
+                headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(product),
-            }).then((resp)=>resp.json()).then((data)=>{
-                data.success?alert("Product Added"):alert("Failed")
-            })
+            }).then((resp) => resp.json()).then((data) => {
+                data.success ? alert("Product Added") : alert("Failed")
+            });
         }
     }
 
@@ -58,12 +78,12 @@ const AddProduct = () => {
                     </p>
                     <input value={productDetails.name} onChange={changeHandler} type="text" name='name' placeholder='Type here' />
                 </div>
-                    <div className='add-product-itemfield'>
-                        <p>
-                            Price
-                        </p>
-                        <input value={productDetails.price} onChange={changeHandler} type="text" name='price' placeholder='Type here' />
-                    </div>
+                <div className='add-product-itemfield'>
+                    <p>
+                        Price
+                    </p>
+                    <input value={productDetails.price} onChange={changeHandler} type="text" name='price' placeholder='Type here' />
+                </div>
                 <div className='add-product-itemfield'>
                     <p>
                         Product category
@@ -76,15 +96,26 @@ const AddProduct = () => {
                     </select>
                 </div>
                 <div className='add-product-itemfield'>
+                    <p>Description (enter after every line)</p>
+                    <textarea
+                        value={productDetails.description}
+                        onChange={changeHandler}
+                        name='description'
+                        placeholder='Type product description. Each line will be seperated.'
+                        rows="4"
+                        className='add-product-textarea'
+                    />
+                </div>
+                <div className='add-product-itemfield'>
                     <p>
                         Image
                     </p>
                     <label htmlFor="file-input">
-                        <img src={image?URL.createObjectURL(image):upload_icon} className='upload-icon' alt="" />
+                        <img src={image ? URL.createObjectURL(image) : upload_icon} className='upload-icon' alt="" />
                     </label>
-                    <input onChange={imageHandler} type="file" name='image' id='file-input' hidden/>
+                    <input onChange={imageHandler} type="file" name='image' id='file-input' hidden />
                 </div>
-                <button onClick={()=>{addButton()}} className='add-product-button'>Add</button>
+                <button onClick={() => { addButton() }} className='add-product-button'>Add</button>
             </div>
         </>
     )

@@ -67,7 +67,8 @@ exports.createProduct = async (req, res, next) => {
         name: req.body.name,
         category: req.body.category,
         price: Number(req.body.price),
-        image: req.body.image
+        image: req.body.image,
+        description: req.body.description || [] 
       });
       const result = await data.save();
       if(result){

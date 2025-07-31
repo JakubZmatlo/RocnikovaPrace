@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import ProductCard from '../components/ProductCard/ProductCard'
-import { categories } from '../assets/assets'
+import ProductCard from '../../components/ProductCard/ProductCard'
+import { categories } from '../../assets/assets'
+import './ProductCategory.css'
 
 const ProductCategory = () => {
   const { category } = useParams()
@@ -16,7 +17,7 @@ const ProductCategory = () => {
         const data = await res.json()
         setCategoryProducts(data.payload || [])
       } catch (err) {
-        console.error("Chyba při načítání kategorií:", err)
+        console.error("Error while loading categories:", err)
         setCategoryProducts([])
       } finally {
         setLoading(false)
@@ -31,33 +32,23 @@ const ProductCategory = () => {
   )
 
   if (loading) {
-    return (
-      <div className='flex items-center justify-center h-[60vh]'>
-        <p className='text-2xl font-medium text-primary'>Loading products...</p>
-      </div>
-    )
+    return <div className="loading">Loading products...</div>;
   }
-
+  
   if (!categoryProducts || categoryProducts.length === 0) {
-    return (
-      <div className='flex items-center justify-center h-[60vh]'>
-        <p className='text-2xl font-medium text-primary'>
-          No products found in this category.
-        </p>
-      </div>
-    )
+    return <div className="no-products">No products found in this category.</div>;
   }
-
+  
   return (
-    <div className='mt-16'>
+    <div className="product-category-container">
       {searchCategory && (
-        <div className='flex flex-col items-end w-max'>
-          <p className='text-2xl font-medium'>{searchCategory.text.toUpperCase()}</p>
-          <div className='w-16 h-0.5 bg-primary rounded-full'></div>
+        <div className="category-header">
+          <p className="category-title">{searchCategory.text.toUpperCase()}</p>
+          <div className="category-underline"></div>
         </div>
       )}
-
-      <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-6 lg:grid-cols-5 mt-6'>
+  
+      <div className="category-grid">
         {categoryProducts.map((product) => (
           <ProductCard key={product._id} product={product} />
         ))}

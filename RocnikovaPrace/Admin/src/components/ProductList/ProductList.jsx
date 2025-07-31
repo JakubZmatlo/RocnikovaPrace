@@ -34,6 +34,7 @@ const ProductList = () => {
                     <p>Name</p>
                     <p>Price</p>
                     <p>Category</p>
+                    <p>Description</p>
                     <p>Remove</p>
                 </div>
                 <div className='product-list-all-products'>
@@ -45,6 +46,10 @@ const ProductList = () => {
                                 <p>{product.name}</p>
                                 <p>${product.price}</p>
                                 <p>{product.category}</p>
+                                <ul className='description-list'>
+                                    {Array.isArray(product.description) &&
+                                        product.description.map((line, i) => <li key={i}>{line}</li>)}
+                                </ul>
                                 <img onClick={() => { remove_product(product.id) }} className='remove-icon' src={delete_icon} alt="" />
                             </div>
                             <hr />

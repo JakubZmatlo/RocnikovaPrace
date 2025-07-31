@@ -7,7 +7,8 @@ const schema = mongoose.Schema({
     price: { type: Number, required: true },
     image: { type: String, required: true },
     date: { type: Date, default: Date.now },
-    availability: { type: Boolean, default: true }
+    availability: { type: Boolean, default: true },
+    description: {type: [String], default: []}
 
 });
 

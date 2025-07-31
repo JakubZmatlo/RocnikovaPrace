@@ -32,10 +32,19 @@ const Products = () => {
             <img src={product.image} alt={product.name} style={{ width: '100%' }} />
             <h3>{product.name}</h3>
             <p>{product.category}</p>
-            <strong>{product.price} Kč</strong>
+
+            {}
+            {Array.isArray(product.description) && product.description.length > 0 && (
+              <p style={{ fontSize: '0.9rem', color: '#666' }}>
+                {product.description[0]}
+              </p>
+            )}
+
+            <strong>{product.price} $</strong>
           </div>
         ))}
-        {products.length === 0 && <p>Žádné produkty v této kategorii.</p>}
+
+        {products.length === 0 && <p>No products in this category.</p>}
       </div>
     </div>
   );

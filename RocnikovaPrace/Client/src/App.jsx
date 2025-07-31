@@ -5,12 +5,13 @@ import Home from './pages/Home'
 import {Toaster} from "react-hot-toast";
 import Footer from './components/Footer/Footer';
 import { useAppContext } from './context/AppContext';
-import Login from './components/Login';
+import Login from './components/Login/Login';
 import AllProducts from './pages/AllProducts/AllProducts';
 import ProductCategory from './pages/ProductCategory/ProductCategory';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import Cart from './pages/Cart/Cart';
 import SearchPage from './pages/SearchPage/SearchPage';
+import MyOrders from './pages/MyOrders';
 
 const App = () => {
   const {showUserLogin} = useAppContext()
@@ -28,6 +29,7 @@ const App = () => {
           <Route path='/products/:category/:id' element={<ProductDetails/>}/>
           <Route path='/cart' element={<Cart/>}/>
           <Route path='/search' element={<SearchPage/>}/>
+          <Route path='/my-orders' element={<MyOrders/>}/>
           
         </Routes>
       </div>

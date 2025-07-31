@@ -35,6 +35,61 @@ const Cart = () => {
         }
     }, [products, cartItems]);
 
+    const handleCheckout = async () => {
+        if (paymentOption === "COD") {
+            alert("Order created!");
+            return;
+        }
+
+        try {
+            const response = await fetch("http://localhost:4000/create-checkout-session", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    items: cartArray.map(item => ({
+                        name: item.name,
+                        price: item.price,
+                        quantity: item.quantity
+                    }))
+                })
+            });
+
+            const data = await response.json();
+            if (data.url) {
+                window.location.href = data.url;
+            } else {
+                alert("Something went wrong");
+            }
+        } catch (error) {
+            console.error("Error during Stripe session", error);
+            alert("Try again later");
+        }
+    };
+
+    const placeCODOrder = async () => {
+        const token = localStorage.getItem('token');
+        const response = await fetch('http://localhost:4000/createorder', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'auth-token': token,
+          },
+          body: JSON.stringify({
+            items: cartItems,
+            paymentMethod: 'COD',
+          }),
+        });
+      
+        const data = await response.json();
+        if (data.success) {
+          navigate('/myorders');
+        } else {
+          alert('Chyba při objednávce');
+        }
+      };
+
     return products.length > 0 && cartItems ? (
         <div className="cart-container">
 
@@ -131,7 +186,7 @@ const Cart = () => {
                 </div>
 
                 <button
-                    onClick={() => { }}
+                    onClick={handleCheckout}
                     className="cart-checkout-button"
                 >
                     {paymentOption === "COD" ? "Place Order" : "Proceed to Checkout"}

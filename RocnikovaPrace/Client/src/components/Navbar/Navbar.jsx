@@ -78,7 +78,7 @@ const Navbar = () => {
                     <div className='user_button_logged'>
                         <img src={profile_icon} className='user_icon' alt="profile" />
                         <ul className='user_logged_list'>
-                            <li onClick={() => navigate("my-orders")} className='user_logged_list_choices'>My Orders</li>
+                            <li onClick={() => navigate("/my-orders")} className='user_logged_list_choices'>My Orders</li>
                             <li onClick={logout} className='user_logged_list_choices'>Logout</li>
                         </ul>
                     </div>
@@ -107,7 +107,7 @@ const Navbar = () => {
                     <NavLink to="/products/extraliga" onClick={() => setOpen(false)}>Extraliga</NavLink>
                     <NavLink to="/products/accesories" onClick={() => setOpen(false)}>Accesories</NavLink>
                     {user &&
-                        <NavLink to="/products" onClick={() => setOpen(false)}>My Orders</NavLink>
+                        <NavLink to="/my-orders" onClick={() => setOpen(false)}>My Orders</NavLink>
                     }
 
                     {!user ? (

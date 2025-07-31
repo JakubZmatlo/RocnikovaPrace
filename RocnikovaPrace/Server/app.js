@@ -16,6 +16,7 @@ mongoose
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
+const ordersRouter = require('./routes/orders');
 
 var app = express();
 const Product = require('./models/products');
@@ -39,6 +40,7 @@ app.use('/products', (req, res, next) => {
   next();
 });
 app.use('/products', productsRouter);
+app.use('/order', ordersRouter);
 
 app.get("/", (req, res) => {
   res.send("App is running")
@@ -62,12 +64,15 @@ app.post("/upload", upload.single('product'), (req, res) => {
   })
 })
 
-app.post('/signup', async (req, res) => {
+const bcrypt = require('bcrypt');
 
+app.post('/signup', async (req, res) => {
   let check = await Users.findOne({ email: req.body.email });
   if (check) {
-    return res.status(400).json({ success: false, errors: "User with this email address already exists" })
+    return res.status(400).json({ success: false, errors: "User with this email address already exists" });
   }
+
+  const hashedPassword = await bcrypt.hash(req.body.password, 10); // 10 je počet salt rounds
 
   let cart = {};
   for (let i = 0; i < 300; i++) {
@@ -77,43 +82,108 @@ app.post('/signup', async (req, res) => {
   const user = new Users({
     name: req.body.username,
     email: req.body.email,
-    password: req.body.password,
+    password: hashedPassword,
     cartData: cart,
-  })
+  });
 
   await user.save();
 
-  const data = {
-    user: {
-      id: user.id
-    }
-  }
-
+  const data = { user: { id: user.id } };
   const token = jwt.sign(data, 'secret_ecom');
-  res.json({ success: true, token })
-
-})
+  res.json({ success: true, token });
+});
 
 app.post('/login', async (req, res) => {
   let user = await Users.findOne({ email: req.body.email });
-  if (user) {
-    const passwordCompare = req.body.password === user.password;
-    if (passwordCompare) {
-      const data = {
-        user: {
-          id: user.id
-        }
-      }
-      const token = jwt.sign(data, 'secret_ecom')
-      res.json({ success: true, token });
-    }
-    else {
-      res.json({ success: false, errors: "Wrong password" });
-    }
-  } else {
-    res.json({ success: false, errors: "Wrong email address" })
+  if (!user) {
+    return res.json({ success: false, errors: "Wrong email address" });
   }
-})
+
+  const passwordMatch = await bcrypt.compare(req.body.password, user.password);
+  if (!passwordMatch) {
+    return res.json({ success: false, errors: "Wrong password" });
+  }
+
+  const data = { user: { id: user.id } };
+  const token = jwt.sign(data, 'secret_ecom');
+  res.json({ success: true, token });
+});
+
+
+
+app.get('/getcart', async (req, res) => {
+  try {
+    const token = req.headers['auth-token'];
+    const data = jwt.verify(token, 'secret_ecom');
+    const user = await Users.findById(data.user.id);
+    res.json({ success: true, cartData: user.cartData });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Error fetching cart" });
+  }
+});
+
+app.post('/updatecart', async (req, res) => {
+  try {
+    const token = req.headers['auth-token'];
+    const data = jwt.verify(token, 'secret_ecom');
+    const user = await Users.findById(data.user.id);
+    user.cartData = req.body.cartData;
+    await user.save();
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Error updating cart" });
+  }
+});
+
+const Stripe = require('stripe');
+const stripe = Stripe('tvůj_sk_test_klíč'); 
+
+app.post('/create-checkout-session', async (req, res) => {
+  try {
+    const { items } = req.body;
+
+    const lineItems = items.map(item => ({
+      price_data: {
+        currency: 'usd', 
+        product_data: {
+          name: item.name,
+        },
+        unit_amount: item.price * 100, 
+      },
+      quantity: item.quantity,
+    }));
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: lineItems, 
+      mode: 'payment',
+      success_url: 'http://localhost:5174/success',
+      cancel_url: 'http://localhost:5174/cart',
+    });
+
+    res.json({ url: session.url });
+  } catch (error) {
+    console.error('Chyba při vytváření Stripe session:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/myorders', async (req, res) => {
+  try {
+    const token = req.headers['auth-token'];
+    if (!token) return res.status(401).json({ error: "No token provided" });
+
+    const data = jwt.verify(token, 'secret_ecom');
+    const user = await Users.findById(data.user.id);
+
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    res.json({ success: true, orders: user.cartData });
+  } catch (err) {
+    console.error('Chyba při načítání objednávek:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 app.listen(port, (error) => {
   if (!error) {

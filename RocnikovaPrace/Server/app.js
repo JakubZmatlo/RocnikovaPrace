@@ -146,7 +146,7 @@ app.post('/updatecart', async (req, res) => {
 });
 
 const Stripe = require('stripe');
-const stripe = Stripe(process.env.STRIPE_SECRET_KEY); 
+const stripe = Stripe('sk_test_51Rr389COvuIAM67in3ecq0eiN29ckHJenKsc6XTdwoJ7WimiOuxliP8KQQrCM1rUifgJ8LF87hnQia4g3h36Upds004Dilt4xF'); 
 
 app.post('/create-checkout-session', async (req, res) => {
   try {

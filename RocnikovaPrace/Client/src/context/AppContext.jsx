@@ -84,16 +84,16 @@ export const AppContextProvider = ({ children }) => {
         return totalCount;
     }
 
-    const getCartAmount = ()=>{
-        let totalAmount = 0;
-        for(const items in cartItems){
-            let itemInfo = products.find((product) => product._id === items);
-            if(cartItems[items] > 0){
-                totalAmount += itemInfo.offerPrice * cartItems[items]
-            }
-        }
-        return Math.floor(totalAmount * 100) / 100;
-    }
+    const getCartAmount = () => {
+      let totalAmount = 0;
+      for (const itemId in cartItems) {
+          const product = products.find((product) => product._id === itemId);
+          if (product && cartItems[itemId] > 0) {
+              totalAmount += product.price * cartItems[itemId];
+          }
+      }
+      return Math.floor(totalAmount * 100) / 100;
+  };
 
     const changeCartQuantity = (itemId, newQuantity) => {
       let cartData = structuredClone(cartItems);

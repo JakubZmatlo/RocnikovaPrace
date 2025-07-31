@@ -6,10 +6,10 @@ import {Toaster} from "react-hot-toast";
 import Footer from './components/Footer/Footer';
 import { useAppContext } from './context/AppContext';
 import Login from './components/Login';
-import AllProducts from './pages/AllProducts';
+import AllProducts from './pages/AllProducts/AllProducts';
 import ProductCategory from './pages/ProductCategory/ProductCategory';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
-import Cart from './pages/Cart';
+import Cart from './pages/Cart/Cart';
 import SearchPage from './pages/SearchPage';
 
 const App = () => {

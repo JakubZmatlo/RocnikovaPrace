@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import ProductCard from '../components/ProductCard/ProductCard';
+import ProductCard from '../../components/ProductCard/ProductCard';
+import './AllProducts.css'; // nezapomeň na CSS import
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
@@ -30,16 +31,24 @@ const AllProducts = () => {
     }
   }, [products, searchQuery]);
 
+  if (!filteredProducts.length) {
+    return (
+      <div className="no-products">
+        No available products.
+      </div>
+    );
+  }
+
   return (
-    <div className="mt-16 flex flex-col">
-      <div className="flex flex-col items-end w-max">
-        <p className="text-2xl font-medium uppercase">All products</p>
-        <div className="w-16 h-0.5 bg-primary rounded-full"></div>
+    <div className="all-products-container">
+      <div className="all-products-header">
+        <p className="all-products-title">All Products</p>
+        <div className="all-products-underline"></div>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-6 lg:grid-cols-5 mt-6">
+      <div className="all-products-grid">
         {filteredProducts
-          ?.filter(product => product.availability !== false)
+          .filter(product => product.availability !== false)
           .map((product, index) => (
             <ProductCard key={index} product={product} />
           ))}

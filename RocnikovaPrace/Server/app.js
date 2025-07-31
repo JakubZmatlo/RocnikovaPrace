@@ -7,6 +7,7 @@ var logger = require('morgan');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const multer = require("multer");
+require('dotenv').config();
 const mongoose = require('mongoose');
 mongoose
   .connect(`mongodb+srv://admin:adminadmin@cluster0.kstps.mongodb.net/eshop?retryWrites=true&w=majority&appName=Cluster0`)
@@ -145,7 +146,7 @@ app.post('/updatecart', async (req, res) => {
 });
 
 const Stripe = require('stripe');
-const stripe = Stripe('sk_test_51Rr389COvuIAM67in3ecq0eiN29ckHJenKsc6XTdwoJ7WimiOuxliP8KQQrCM1rUifgJ8LF87hnQia4g3h36Upds004Dilt4xF'); 
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY); 
 
 app.post('/create-checkout-session', async (req, res) => {
   try {

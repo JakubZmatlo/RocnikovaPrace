@@ -22,6 +22,7 @@ const ordersRouter = require('./routes/orders');
 var app = express();
 const Product = require('./models/products');
 const User = require('./models/users');
+const Order = require('./models/orders');
 const fetchUser = require('./middlewares/fetchUser');
 
 // view engine setup
@@ -69,7 +70,7 @@ app.post("/upload", upload.single('product'), (req, res) => {
 const bcrypt = require('bcrypt');
 
 app.post('/signup', async (req, res) => {
-  let check = await Users.findOne({ email: req.body.email });
+  let check = await User.findOne({ email: req.body.email });
   if (check) {
     return res.status(400).json({ success: false, errors: "User with this email address already exists" });
   }
@@ -81,7 +82,7 @@ app.post('/signup', async (req, res) => {
     cart[i] = 0;
   }
 
-  const user = new Users({
+  const user = new User({
     name: req.body.username,
     email: req.body.email,
     password: hashedPassword,
@@ -96,7 +97,7 @@ app.post('/signup', async (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-  let user = await Users.findOne({ email: req.body.email });
+  let user = await User.findOne({ email: req.body.email });
   if (!user) {
     return res.json({ success: false, errors: "Wrong email address" });
   }
@@ -125,7 +126,7 @@ app.get('/getcart', async (req, res) => {
   try {
     const token = req.headers['auth-token'];
     const data = jwt.verify(token, 'secret_ecom');
-    const user = await Users.findById(data.user.id);
+    const user = await User.findById(data.user.id);
     res.json({ success: true, cartData: user.cartData });
   } catch (error) {
     res.status(500).json({ success: false, message: "Error fetching cart" });
@@ -135,13 +136,29 @@ app.get('/getcart', async (req, res) => {
 app.post('/updatecart', async (req, res) => {
   try {
     const token = req.headers['auth-token'];
+    if (!token) {
+      return res.status(401).json({ success: false, message: "No auth token provided" });
+    }
+
     const data = jwt.verify(token, 'secret_ecom');
-    const user = await Users.findById(data.user.id);
-    user.cartData = req.body.cartData;
+    const user = await User.findById(data.user.id);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    const cartData = req.body.cartData;
+    if (!cartData || typeof cartData !== "object") {
+      console.error("Invalid cartData:", cartData);
+      return res.status(400).json({ success: false, message: "Invalid cartData" });
+    }
+
+    user.cartData = cartData;
     await user.save();
+
     res.json({ success: true });
   } catch (error) {
-    res.status(500).json({ success: false, message: "Error updating cart" });
+    console.error("Error updating cart:", error.message);
+    res.status(500).json({ success: false, message: error.message });
   }
 });
 
@@ -178,19 +195,7 @@ app.post('/create-checkout-session', async (req, res) => {
   }
 });
 
-app.get('/myorders', async (req, res) => {
-  try {
-    const token = req.headers['auth-token'];
-    const data = jwt.verify(token, 'secret_ecom');
 
-    const orders = await Orders.find({ userId: data.user.id }).sort({ createdAt: -1 });
-
-    res.json({ success: true, orders });
-  } catch (err) {
-    console.error('Chyba při načítání objednávek:', err);
-    res.status(500).json({ success: false, error: err.message });
-  }
-});
 
 app.listen(port, (error) => {
   if (!error) {

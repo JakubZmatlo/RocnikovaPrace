@@ -4,9 +4,7 @@ import cart_icon from '../../assets/shopping-cart.svg'
 import './ProductCard.css'
 
 const ProductCard = ({ product }) => {
-    const { currency, addToCart, removeFromCart, cartItems, navigate } = useAppContext()
-
-
+    const { currency, addToCart, removeFromCart, cartItems, navigate } = useAppContext();
 
     return product && (
         <div
@@ -33,7 +31,13 @@ const ProductCard = ({ product }) => {
                     </p>
 
                     <div onClick={(e) => e.stopPropagation()} className="text-primary">
-                        {!cartItems[product.id] ? (
+                        {cartItems && cartItems[product._id] > 0 ? (
+                            <div className="product-qty-controls">
+                                <button onClick={() => removeFromCart(product._id)}>-</button>
+                                <span>{cartItems[product._id]}</span>
+                                <button onClick={() => addToCart(product._id)}>+</button>
+                            </div>
+                        ) : (
                             <button
                                 className="product-add-btn"
                                 onClick={() => addToCart(product._id)}
@@ -41,12 +45,6 @@ const ProductCard = ({ product }) => {
                                 <img src={cart_icon} alt="cart-icon" className="w-4 h-4" />
                                 Add
                             </button>
-                        ) : (
-                            <div className="product-qty-controls">
-                                <button onClick={() => removeFromCart(product._id)}>-</button>
-                                <span>{cartItems[product._id]}</span>
-                                <button onClick={() => addToCart(product._id)}>+</button>
-                            </div>
                         )}
                     </div>
                 </div>

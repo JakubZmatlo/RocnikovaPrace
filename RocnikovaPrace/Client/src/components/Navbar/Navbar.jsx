@@ -32,9 +32,10 @@ const Navbar = () => {
     }, [open]);
 
     const logout = async () => {
-        setUser(null);
-        navigate('/')
-    }
+        localStorage.removeItem("token");
+        setUser(null); 
+        navigate('/'); 
+    };
 
 
     return (

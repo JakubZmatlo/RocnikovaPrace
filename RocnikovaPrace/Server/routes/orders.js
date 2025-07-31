@@ -34,4 +34,20 @@ router.get('/my-orders', fetchUser, async (req, res) => {
     }
 });
 
+router.delete('/delete/:id', fetchUser, async (req, res) => {
+  try {
+    const orderId = req.params.id;
+    const order = await Order.findOne({ _id: orderId, user: req.user.id });
+
+    if (!order) {
+      return res.status(404).json({ success: false, message: "Order not found" });
+    }
+
+    await Order.findByIdAndDelete(orderId);
+    res.json({ success: true, message: "Order deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
 module.exports = router;

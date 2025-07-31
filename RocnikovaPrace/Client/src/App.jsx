@@ -11,7 +11,7 @@ import ProductCategory from './pages/ProductCategory/ProductCategory';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import Cart from './pages/Cart/Cart';
 import SearchPage from './pages/SearchPage/SearchPage';
-import MyOrders from './pages/MyOrders';
+import MyOrders from './pages/MyOrders/MyOrders';
 
 const App = () => {
   const {showUserLogin} = useAppContext()

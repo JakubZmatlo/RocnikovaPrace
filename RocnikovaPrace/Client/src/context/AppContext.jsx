@@ -84,7 +84,6 @@ export const AppContextProvider = ({ children }) => {
             body: JSON.stringify({ cartData: cartItems }), 
             
           });
-          console.log("🛒 Odesílám cartData na backend:", cartItems);
         } catch (error) {
           console.error("Chyba při ukládání cartu:", error);
         }

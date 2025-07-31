@@ -1,7 +1,7 @@
 import React from 'react'
 import MainBanner from '../components/MainBanner/MainBanner'
 import Categories from '../components/Categories/Categories'
-import BestSeller from '../components/BestSeller'
+import EditorsPick from '../components/EditorsPick/EditorsPick'
 import NewsLetter from '../components/NewsLetter/NewsLetter'
 
 const Home = () => {
@@ -9,7 +9,7 @@ const Home = () => {
     <div className='mt-10'>
       <MainBanner/>
       <Categories/>
-      <BestSeller/>
+      <EditorsPick/>
       <NewsLetter/>
     </div>
   )

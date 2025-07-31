@@ -1,7 +1,8 @@
 import { useEffect } from "react"
 import { useState } from "react"
 import { useAppContext } from "../context/AppContext"
-import { assets } from "../assets/assets"
+import arrow_icon from '../assets/right-arrow.svg'
+import refresh_icon from '../assets/refresh-icon.svg'
 
 const Cart = () => {
     const { products, cartItems, removeFromCart, getCartCount, updateCartItems, navigate, getCartAmount } = useAppContext()
@@ -69,13 +70,13 @@ const Cart = () => {
                         </div>
                         <p className="text-center">${product.price * product.quantity}</p>
                         <button onClick={() => removeFromCart()} className="cursor-pointer mx-auto">
-                            <img src={assets.refresh_icon} alt="remove" className="inline-block w-6 h-6" />
+                            <img src={refresh_icon} alt="remove" className="inline-block w-6 h-6" />
                         </button>
                     </div>)
                 )}
 
                 <button onClick={() => { navigate("/products"); scrollTo(0, 0) }} className="group cursor-pointer flex items-center mt-8 gap-2 text-indigo-500 font-medium">
-                    <img className="group-hover:-translate-x-1 transition w-8 h-8" src={assets.arrow} alt="arrow" />
+                    <img className="group-hover:-translate-x-1 transition w-8 h-8" src={arrow_icon} alt="arrow" />
                     Continue Shopping
                 </button>
 

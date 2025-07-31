@@ -1,7 +1,6 @@
 import React from 'react'
 import { useEffect, useState, useRef } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
-import { assets } from '../../assets/assets'
 import { useAppContext } from '../../context/AppContext'
 import './Navbar.css'
 import main_logo from '../../assets/slapshot_logo_transparent.png'

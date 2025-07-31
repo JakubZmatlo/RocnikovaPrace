@@ -43,14 +43,14 @@
     border-bottom: 1px solid #eee;
   }
   
-  .product-info {
+  .cart-product-info {
     display: flex;
     gap: 1rem;
     align-items: center;
     cursor: pointer;
   }
   
-  .product-image-wrapper {
+  .cart-product-image-wrapper {
     width: 80px;
     height: 80px;
     overflow: hidden;
@@ -60,18 +60,18 @@
     justify-content: center;
   }
   
-  .product-image {
+  .cart-product-image {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain; 
   }
   
-  .product-details {
+  .cart-product-details {
     display: flex;
     flex-direction: column;
   }
   
-  .product-name {
+  .cart-product-name {
     font-size: 1rem;
     font-weight: 500;
     margin-bottom: 0.25rem;
@@ -81,40 +81,40 @@
     max-width: 160px;        
   }
   
-  .quantity-wrapper {
+  .cart-quantity-wrapper {
     display: flex;
     align-items: center;
     gap: 0.5rem;
   }
   
-  .qty-label {
+  .cart-qty-label {
     font-size: 0.9rem;
     color: #444;
   }
   
-  .qty-select {
+  .cart-qty-select {
     padding: 0.3rem 0.6rem;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
   
-  .product-total {
+  .cart-product-total {
     font-weight: 500;
     font-size: 1rem;
   }
   
-  .delete-button {
+  .cart-delete-button {
     background: transparent;
     border: none;
     cursor: pointer;
   }
   
-  .delete-icon {
+  .cart-delete-icon {
     width: 20px;
     height: 20px;
   }
   
-  .continue-shopping {
+  .cart-continue-shopping {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -126,12 +126,12 @@
     cursor: pointer;
   }
   
-  .arrow-icon {
+  .cart-arrow-icon {
     width: 16px;
     height: 16px;
   }
   
-  .order-summary {
+  .cart-order-summary {
     flex: 1;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -139,53 +139,53 @@
     background: #fafafa;
   }
   
-  .order-title {
+  .cart-order-title {
     font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 1rem;
   }
   
-  .order-divider {
+  .cart-order-divider {
     border: none;
     border-top: 1px solid #ddd;
     margin: 1rem 0;
   }
   
-  .payment-section {
+  .cart-payment-section {
     margin-bottom: 1rem;
   }
   
-  .payment-label {
+  .cart-payment-label {
     font-weight: 500;
     margin-bottom: 0.5rem;
   }
   
-  .payment-select {
+  .cart-payment-select {
     width: 100%;
     padding: 0.5rem;
     border-radius: 6px;
     border: 1px solid #ccc;
   }
   
-  .amount-summary {
+  .cart-amount-summary {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
   
-  .amount-line {
+  .cart-amount-line {
     display: flex;
     justify-content: space-between;
     font-size: 1rem;
   }
   
-  .amount-line.total {
+  .cart-amount-line.total {
     font-weight: 600;
     font-size: 1.1rem;
     color: #000;
   }
   
-  .checkout-button {
+  .cart-checkout-button {
     width: 100%;
     margin-top: 1.5rem;
     padding: 0.75rem;
@@ -197,7 +197,7 @@
     cursor: pointer;
   }
   
-  .checkout-button:hover {
+  .cart-checkout-button:hover {
     background-color: #0056b3;
   }
   
@@ -212,7 +212,7 @@
       display: none; 
     }
   
-    .cart-item {
+    .cart-cart-item {
       flex-direction: column;
       align-items: flex-start;
       gap: 0.5rem;
@@ -221,43 +221,43 @@
       border-radius: 8px;
     }
   
-    .product-info {
+    .cart-product-info {
       flex-direction: row;
       align-items: center;
       width: 100%;
       gap: 0.75rem;
     }
   
-    .product-image-wrapper {
+    .cart-product-image-wrapper {
       width: 60px;
       height: 60px;
     }
   
-    .product-name {
+    .cart-product-name {
       max-width: 100px;
       font-size: 0.9rem;
     }
   
-    .product-total {
+    .cart-product-total {
       align-self: flex-end;
       font-weight: 600;
       margin-left: auto;
     }
   
-    .delete-button {
+    .cart-delete-button {
       align-self: flex-end;
       margin-left: auto;
     }
   
-    .cart-main {
+    .cart-cart-main {
       padding: 1rem;
     }
   
-    .order-summary {
+    .cart-order-summary {
       margin: 1rem;
     }
   
-    .quantity-wrapper {
+    .cart-quantity-wrapper {
       margin-top: 0.25rem;
     }
   }

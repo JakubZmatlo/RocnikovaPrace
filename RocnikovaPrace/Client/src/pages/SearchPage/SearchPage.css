@@ -1,0 +1,46 @@
+.search-page-container {
+    margin-top: 4rem;
+  }
+  
+  .search-heading {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  
+  .search-query-highlight {
+    color: var(--primary-color, #3490dc);
+  }
+  
+  .search-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    place-items: center;
+  }
+  
+  @media (min-width: 640px) {
+    .search-grid {
+      grid-template-columns: repeat(3, 1fr);
+      place-items: unset;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .search-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .search-grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+  
+  .search-empty {
+    font-size: 1.25rem;
+    color: #6b7280; /* tailwind gray-500 */
+  }

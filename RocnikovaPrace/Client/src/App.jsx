@@ -10,7 +10,7 @@ import AllProducts from './pages/AllProducts/AllProducts';
 import ProductCategory from './pages/ProductCategory/ProductCategory';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import Cart from './pages/Cart/Cart';
-import SearchPage from './pages/SearchPage';
+import SearchPage from './pages/SearchPage/SearchPage';
 
 const App = () => {
   const {showUserLogin} = useAppContext()

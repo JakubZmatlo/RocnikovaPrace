@@ -1,0 +1,103 @@
+.product-card {
+    border: 1px solid rgba(107, 114, 128, 0.2); 
+    border-radius: 10px;
+    padding: 16px;
+    background-color: white;
+    min-width: 220px;
+    max-width: 220px;
+    width: 100%;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .product-card:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+  
+  .product-card img {
+    max-width: 140px;
+    max-height: 140px;
+    object-fit: contain;
+    transition: transform 0.2s;
+  }
+  
+  .product-card img:hover {
+    transform: scale(1.05);
+  }
+  
+  .product-category {
+    color: rgba(107, 114, 128, 0.6); 
+    font-size: 0.85rem;
+    margin-top: 12px;
+  }
+  
+  .product-name {
+    font-weight: 600;
+    color: #374151; 
+    font-size: 1rem;
+    margin-top: 4px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  .product-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 16px;
+  }
+  
+  .product-price {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #004080; 
+  }
+  
+  .product-add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background-color: rgba(0, 64, 128, 0.1);
+    border: 1px solid rgba(0, 64, 128, 0.4);
+    width: 80px;
+    height: 34px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #004080;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .product-add-btn:hover {
+    background-color: rgba(0, 64, 128, 0.2);
+  }
+  
+  .product-qty-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 64, 128, 0.25);
+    border-radius: 6px;
+    height: 34px;
+    width: 80px;
+    gap: 8px;
+    font-size: 1rem;
+    user-select: none;
+  }
+  
+  .product-qty-controls button {
+    padding: 0 8px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: #004080;
+  }
+  
+  .product-qty-controls span {
+    width: 20px;
+    text-align: center;
+  }
